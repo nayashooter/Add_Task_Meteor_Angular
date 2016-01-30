@@ -1,0 +1,39 @@
+<body>
+<div class="container"
+     ng-controller="TodosListCtrl as Ctrl">
+     
+  <header>
+    <h1>Todo List</h1>
+  </header>
+
+  <form>
+    <input type="text" ng-model="Ctrl.newTask.text" />
+    <button ng-click="Ctrl.addTask()">Add Task!</button>
+  </form>
+
+  <ul>
+    <li ng-repeat="task in Ctrl.tasks">
+      {{task.text}}
+      <button class="delete" ng-click="Ctrl.removeTask(task)">&times;</button>
+    </li>
+  </ul>
+
+      <!--<form class="new-task" ng-submit="addTask(newTask); newTask='';">
+          <input ng-model="newTask" type="text"
+                 name="text" placeholder="Type to add new tasks" />
+        </form>
+
+     
+      <ul>
+        <li ng-repeat="task in tasks" ng-class="{'checked': task.checked}">
+          <button class="delete" ng-click="tasks.remove(task)">&times;</button>
+     
+          <input type="checkbox" ng-model="task.checked" class="toggle-checked" />
+     
+          <span class="text">{{task.text}}</span>
+        </li>
+
+      </ul>-->
+     
+    </div>
+    </body>
