@@ -1,4 +1,4 @@
-Tasks = new Mongo.Collection('tasks');
+  Applications = new Mongo.Collection('applications');
      
     if (Meteor.isClient) {
      
@@ -19,36 +19,23 @@ Tasks = new Mongo.Collection('tasks');
         function ($scope, $reactive) {
           $reactive(this).attach($scope);
 
-          this.newTask = {};   
+          this.newApplication = {};   
 
           this.helpers({
-            tasks: () => {
-              return Tasks.find({});
+            applications: () => {
+              return Applications.find({});
             }
           });
 
-          this.addTask = () => {
-            this.newTask["createdAt"] = new Date();
-
-            Tasks.insert(this.newTask);
-            this.newTask = {};
+          this.addApplication = () => {
+            this.newApplication["createdAt"] = new Date();
+            Applications.insert(this.newApplication);
+            this.newApplication = {};
           };
 
-          this.removeTask = (task) => {
-            Tasks.remove({_id : task._id});
+          this.removeApplication = (app) => {
+            Applications.remove({_id : app._id});
           }
-
-       
-
-
-
-               
-           /* $scope.addTask = function (newTask) {
-              $scope.tasks.push( {
-                text: newTask,
-                createdAt: new Date() }
-              );
-            };*/
 
           }]);
     }
@@ -57,5 +44,17 @@ Tasks = new Mongo.Collection('tasks');
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+    if ( Applications.find().count() === 0){
+        Applications.insert(
+          { 
+            IdApp : "HBADM" , 
+            name :"HabAdmin" , 
+            urlDev : "http://habadmin.dev.S2h.corp" , 
+            urlRec :"http://habadmin.rec.S2h.corp" , 
+            urlProd :"http://habadmin.S2h.corp" ,
+            createdAt : new Date()
+          }); 
+    }
+
   });
 }

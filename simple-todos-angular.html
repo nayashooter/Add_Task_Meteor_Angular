@@ -1,39 +1,108 @@
 <body>
-<div class="container"
-     ng-controller="TodosListCtrl as Ctrl">
-     
-  <header>
-    <h1>Todo List</h1>
-  </header>
+<div class="container-fluid" ng-controller="TodosListCtrl as Ctrl">
 
-  <form>
+  <nav class="navbar navbar-default">
+
+    <a class="navbar-brand" href="#">Gestionnaire applications</a>
+
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </nav>
+     
+
+  <!--<form>
     <input type="text" ng-model="Ctrl.newTask.text" />
     <button ng-click="Ctrl.addTask()">Add Task!</button>
-  </form>
+  </form>-->
 
-  <ul>
-    <li ng-repeat="task in Ctrl.tasks">
-      {{task.text}}
-      <button class="delete" ng-click="Ctrl.removeTask(task)">&times;</button>
-    </li>
-  </ul>
+  <div class="row">
 
-      <!--<form class="new-task" ng-submit="addTask(newTask); newTask='';">
-          <input ng-model="newTask" type="text"
-                 name="text" placeholder="Type to add new tasks" />
-        </form>
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+        <div class="panel-heading">Administration</div>
+        <div class="panel-body">
+          
+          <form class="form-horizontal" ng-submit="Ctrl.addApplication()">
+            <div class="form-group">
+              <label for="inputId" class="col-sm-2 control-label">Id</label>
+              <div class="col-sm-10">
+                <input type="input" class="form-control" id="inputId" placeholder="Id" ng-model="Ctrl.newApplication.IdApp">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputName" class="col-sm-2 control-label">Name</label>
+              <div class="col-sm-10">
+                <input type="input" class="form-control" id="inputName" placeholder="Name" ng-model="Ctrl.newApplication.name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputId" class="col-sm-2 control-label">UrlDev</label>
+              <div class="col-sm-10">
+                <input type="input" class="form-control" id="inputId" placeholder="UrlDev" ng-model="Ctrl.newApplication.urlDev">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputId" class="col-sm-2 control-label">UrlRec</label>
+              <div class="col-sm-10">
+                <input type="input" class="form-control" id="inputId" placeholder="urlRec" ng-model="Ctrl.newApplication.urlRec">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputId" class="col-sm-2 control-label">UrlProd</label>
+              <div class="col-sm-10">
+                <input type="input" class="form-control" id="inputId" placeholder="urlProd" ng-model="Ctrl.newApplication.urlProd">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default">Update</button>
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+            </div>
 
-     
-      <ul>
-        <li ng-repeat="task in tasks" ng-class="{'checked': task.checked}">
-          <button class="delete" ng-click="tasks.remove(task)">&times;</button>
-     
-          <input type="checkbox" ng-model="task.checked" class="toggle-checked" />
-     
-          <span class="text">{{task.text}}</span>
-        </li>
 
-      </ul>-->
-     
+          </form>
+
+        </div>
+      </div>
     </div>
-    </body>
+
+    <div class="col-md-8">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>UrlDev</th>
+                <th>UrlRec</th>
+                <th>UrlProd</th>
+                <th>CreatedAt</th>
+                <th></th>
+            </tr>  
+          </thead>
+          <tbody>
+              <tr ng-repeat="app in Ctrl.applications">
+                  <td>{{app.IdApp}}</td>
+                  <td>{{app.name}}</td>
+                  <td>{{app.urlDev}}</td>
+                  <td>{{app.urlRec}}</td>
+                  <td>{{app.urlProd}}</td>
+                  <td>{{app.createdAt | date : 'dd/MM/yyyy' }}</td>
+                  <td><button class="btn btn-sm btn-primary" ng-click="Ctrl.removeApplication(app)">&times;</button></td>
+              </tr>
+          </tbody>
+        </table>  
+    </div>
+
+  </div>  
+
+
+  
+
+
+</div>
+</body>
